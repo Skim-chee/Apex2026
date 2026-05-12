@@ -1,41 +1,167 @@
 ---
-import { signal } from '@preact/signals';
-// Component Imports
-import Counter from '../components/Counter';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
-
-const count = signal(0);
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<style>
-			html,
-			body {
-				font-family: system-ui;
-				margin: 0;
-			}
-			body {
-				padding: 2rem;
-			}
-		</style>
-	</head>
-	<body>
-		<main>
-			<Counter count={count} client:visible>
-				<h1>Hello, Preact 1!</h1>
-			</Counter>
+<BaseLayout>
+  <section class="hero">
+    <h2 class="hero-heading">Shaped by Hand,<br />Made for Everyday</h2>
+    <p class="hero-sub">A collection of functional ceramics exploring form, texture, and quiet beauty.</p>
+  </section>
 
-			<Counter count={count} client:visible>
-				<h1>Hello, Preact 2!</h1>
-			</Counter>
-		</main>
-	</body>
-</html>
+  <section class="editorial-section">
+    <div class="image-placeholder image-full">
+      <span class="placeholder-label">Image — Hero piece</span>
+    </div>
+  </section>
+
+  <section class="editorial-section">
+    <h3 class="section-heading">Comfort in the Touch</h3>
+    <p class="body-text">
+      Each piece begins as a centered lump of clay on the wheel. Through the rhythm of
+      throwing, trimming, and glazing, the form finds itself — functional, tactile, and
+      rooted in the ritual of everyday use.
+    </p>
+  </section>
+
+  <section class="editorial-section">
+    <div class="image-pair">
+      <div class="image-placeholder image-half">
+        <span class="placeholder-label">Image — Detail shot</span>
+      </div>
+      <div class="image-placeholder image-half">
+        <span class="placeholder-label">Image — In-use shot</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="editorial-section">
+    <h3 class="section-heading">The Glaze</h3>
+    <p class="body-text">
+      Our glazes are mixed in-studio, tested across dozens of firings. We favor
+      matte earth tones and subtle celadons — surfaces that feel as good as they look,
+      that change with the light and deepen with use.
+    </p>
+  </section>
+
+  <section class="editorial-section">
+    <div class="image-placeholder image-full">
+      <span class="placeholder-label">Image — Glaze detail</span>
+    </div>
+  </section>
+
+  <section class="editorial-section">
+    <h3 class="section-heading">From Studio to Table</h3>
+    <p class="body-text">
+      Mugs, bowls, plates, vases — objects that hold coffee, soup, flowers,
+      and the small ceremonies of a day. We make things meant to be used,
+      not displayed behind glass.
+    </p>
+  </section>
+
+  <section class="editorial-section">
+    <div class="image-pair">
+      <div class="image-placeholder image-half">
+        <span class="placeholder-label">Image — Table setting</span>
+      </div>
+      <div class="image-placeholder image-half">
+        <span class="placeholder-label">Image — Studio shelf</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="editorial-section closing">
+    <p class="pull-quote">
+      "We make things meant to be held."
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 5rem 0 4rem;
+  }
+
+  .hero-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    color: #2c2c2c;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: #8a8a8a;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .editorial-section {
+    margin-bottom: 5rem;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: 0.03em;
+    margin-bottom: 1.2rem;
+    color: #2c2c2c;
+  }
+
+  .body-text {
+    font-size: 1rem;
+    color: #5a5a5a;
+    max-width: 620px;
+    line-height: 1.8;
+  }
+
+  .image-placeholder {
+    background: #eae8e4;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .placeholder-label {
+    font-size: 0.8rem;
+    color: #b0ada8;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .image-full {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .image-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .image-half {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .pull-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    text-align: center;
+    color: #8a8a8a;
+    padding: 3rem 0;
+  }
+
+  .closing {
+    border-top: 1px solid #e8e6e2;
+    margin-top: 2rem;
+  }
+</style>

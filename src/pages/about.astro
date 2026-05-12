@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About — Jeremy and Seean's Ceramics">
+  <section class="about-hero">
+    <h2 class="about-heading">About the Artists</h2>
+  </section>
+
+  <section class="about-section">
+    <div class="image-placeholder portrait">
+      <span class="placeholder-label">Image — Portrait</span>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <p class="body-text">
+      Jeremy and Seean started working with clay in 2024, drawn to the slow, tactile
+      process of shaping something by hand. What began as weekend experiments quickly
+      became a shared practice — centering clay on the wheel, mixing glazes in the
+      studio, and learning through every cracked pot and collapsed rim.
+    </p>
+  </section>
+
+  <section class="about-section">
+    <p class="body-text">
+      Our work is rooted in function. We believe the objects you use every day should
+      feel intentional — that a morning cup of coffee tastes better from a mug shaped
+      with care. We draw inspiration from Japanese mingei philosophy, Scandinavian
+      simplicity, and the California ceramics tradition.
+    </p>
+  </section>
+
+  <section class="about-section">
+    <div class="image-placeholder landscape">
+      <span class="placeholder-label">Image — Studio shot</span>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <p class="body-text">
+      Everything is made in small batches, thrown on the wheel, trimmed by hand, and
+      fired in a reduction kiln. No two pieces are identical — that's the point.
+    </p>
+  </section>
+
+  <section class="about-section contact">
+    <p class="contact-text">
+      Get in touch — <a href="mailto:hello@example.com" class="contact-link">hello@example.com</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    text-align: center;
+    padding: 5rem 0 3rem;
+  }
+
+  .about-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    letter-spacing: 0.06em;
+    color: #2c2c2c;
+  }
+
+  .about-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .body-text {
+    font-size: 1rem;
+    color: #5a5a5a;
+    max-width: 580px;
+    line-height: 1.85;
+    margin: 0 auto;
+  }
+
+  .image-placeholder {
+    background: #eae8e4;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .placeholder-label {
+    font-size: 0.8rem;
+    color: #b0ada8;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .portrait {
+    width: 60%;
+    max-width: 400px;
+    aspect-ratio: 3 / 4;
+  }
+
+  .landscape {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .contact {
+    text-align: center;
+    border-top: 1px solid #e8e6e2;
+    padding-top: 3rem;
+    margin-top: 2rem;
+  }
+
+  .contact-text {
+    font-size: 0.9rem;
+    color: #8a8a8a;
+    letter-spacing: 0.04em;
+  }
+
+  .contact-link {
+    color: #2c2c2c;
+    text-decoration: none;
+    border-bottom: 1px solid #d0cec9;
+    transition: border-color 0.25s ease;
+  }
+
+  .contact-link:hover {
+    border-color: #2c2c2c;
+  }
+</style>
