@@ -19,12 +19,67 @@ import videoSrc from '../assets/moodboard.mp4';
       preload="metadata"
     />
   </section>
+
+  <div class="ds-overflow-clip">
+    <section class="design-system-section" data-ds-section>
+
+      <p class="ds-label ds-animate from-left" style="--delay: 0ms">Colors</p>
+      <div class="color-swatches">
+        <div class="swatch ds-animate from-left" style="--delay: 60ms">
+          <div class="swatch-color" style="background:#faf9f7; box-shadow: inset 0 0 0 1px #e8e6e2;"></div>
+          <span class="swatch-name">Background</span>
+          <span class="swatch-hex">#faf9f7</span>
+        </div>
+        <div class="swatch ds-animate from-right" style="--delay: 120ms">
+          <div class="swatch-color" style="background:#2c2c2c;"></div>
+          <span class="swatch-name">Text</span>
+          <span class="swatch-hex">#2c2c2c</span>
+        </div>
+        <div class="swatch ds-animate from-left" style="--delay: 180ms">
+          <div class="swatch-color" style="background:#5a5a5a;"></div>
+          <span class="swatch-name">Body</span>
+          <span class="swatch-hex">#5a5a5a</span>
+        </div>
+        <div class="swatch ds-animate from-right" style="--delay: 240ms">
+          <div class="swatch-color" style="background:#8a8a8a;"></div>
+          <span class="swatch-name">Muted</span>
+          <span class="swatch-hex">#8a8a8a</span>
+        </div>
+        <div class="swatch ds-animate from-left" style="--delay: 300ms">
+          <div class="swatch-color" style="background:#e8e6e2;"></div>
+          <span class="swatch-name">Border</span>
+          <span class="swatch-hex">#e8e6e2</span>
+        </div>
+      </div>
+
+      <p class="ds-label ds-animate from-right" style="--delay: 0ms; margin-top: 3.5rem;">Typography</p>
+      <div class="type-specimens">
+        <div class="type-row ds-animate from-right" style="--delay: 60ms">
+          <span class="type-meta">Cormorant Garamond · 300</span>
+          <span class="type-sample" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.5rem; letter-spacing: 0.04em;">Form follows feeling</span>
+        </div>
+        <div class="type-row ds-animate from-left" style="--delay: 130ms">
+          <span class="type-meta">Cormorant Garamond · italic</span>
+          <span class="type-sample" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 1.5rem;">"Made to be held"</span>
+        </div>
+        <div class="type-row ds-animate from-right" style="--delay: 200ms">
+          <span class="type-meta">Inter · 300</span>
+          <span class="type-sample" style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.95rem; line-height: 1.7;">Shaped by hand, made for every day</span>
+        </div>
+        <div class="type-row ds-animate from-left" style="--delay: 270ms">
+          <span class="type-meta">Inter · 400 · uppercase · tracked</span>
+          <span class="type-sample" style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #6b6b6b;">Process · Shop · About</span>
+        </div>
+      </div>
+
+    </section>
+  </div>
 </BaseLayout>
 
 <script>
   const video = document.getElementById('moodboard-video') as HTMLVideoElement;
 
-  const observer = new IntersectionObserver(
+  const videoObserver = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
         video.play();
@@ -35,7 +90,22 @@ import videoSrc from '../assets/moodboard.mp4';
     { threshold: 0.2 }
   );
 
-  observer.observe(video);
+  videoObserver.observe(video);
+
+  const section = document.querySelector('[data-ds-section]') as HTMLElement;
+  const dsObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        section.querySelectorAll('.ds-animate').forEach((el) => {
+          el.classList.add('is-visible');
+        });
+        dsObserver.unobserve(section);
+      }
+    },
+    { threshold: 0.05 }
+  );
+
+  dsObserver.observe(section);
 </script>
 
 <style>
@@ -66,5 +136,120 @@ import videoSrc from '../assets/moodboard.mp4';
     width: 100%;
     border-radius: 2px;
     display: block;
+  }
+
+  /* ── Design system ── */
+
+  .ds-overflow-clip {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    padding: 2rem 0 5rem;
+  }
+
+  .design-system-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .ds-animate {
+    opacity: 0;
+    transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--delay, 0ms);
+  }
+
+  .from-left {
+    transform: translateX(-100vw);
+  }
+
+  .from-right {
+    transform: translateX(100vw);
+  }
+
+  .ds-animate.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .ds-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #b0ada8;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Color swatches */
+
+  .color-swatches {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .swatch-color {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 2px;
+  }
+
+  .swatch-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #2c2c2c;
+    letter-spacing: 0.02em;
+  }
+
+  .swatch-hex {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: #b0ada8;
+    letter-spacing: 0.04em;
+  }
+
+  /* Typography specimens */
+
+  .type-specimens {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid #f0eee9;
+  }
+
+  .type-row:last-child {
+    border-bottom: none;
+  }
+
+  .type-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: #b0ada8;
+    text-transform: uppercase;
+    flex: 0 0 200px;
+    line-height: 1.4;
+  }
+
+  .type-sample {
+    color: #2c2c2c;
+    flex: 1;
   }
 </style>
