@@ -18,9 +18,9 @@ export default function Navbar() {
     <nav
       class={`navbar ${visible ? 'navbar--visible' : 'navbar--hidden'}`}
     >
-      <a href="/" class="nav-link">Gallery</a>
-      <a href="/about" class="nav-link">About</a>
-      <a href="/moodboard" class="nav-link">Process</a>
+      <a href={`${import.meta.env.BASE_URL}`} class="nav-link">Gallery</a>
+      <a href={`${import.meta.env.BASE_URL}/about`} class="nav-link">About</a>
+      <a href={`${import.meta.env.BASE_URL}/moodboard`} class="nav-link">Process</a>
     </nav>
   );
 }
