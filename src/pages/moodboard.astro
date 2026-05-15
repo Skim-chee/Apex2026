@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import videoSrc from '../assets/moodboard.mp4';
 ---
 
 <BaseLayout title="Process — Jeremy and Seean's Ceramics">
@@ -8,34 +9,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p class="process-sub">A moodboard of textures, references, and studio moments.</p>
   </section>
 
-  <section class="grid">
-    <!-- Replace these placeholders with actual images -->
-    <div class="image-placeholder tall">
-      <span class="placeholder-label">Image</span>
-    </div>
-    <div class="image-placeholder">
-      <span class="placeholder-label">Image</span>
-    </div>
-    <div class="image-placeholder">
-      <span class="placeholder-label">Image</span>
-    </div>
-    <div class="image-placeholder wide">
-      <span class="placeholder-label">Image</span>
-    </div>
-    <div class="image-placeholder">
-      <span class="placeholder-label">Image</span>
-    </div>
-    <div class="image-placeholder tall">
-      <span class="placeholder-label">Image</span>
-    </div>
-    <div class="image-placeholder">
-      <span class="placeholder-label">Image</span>
-    </div>
-    <div class="image-placeholder wide">
-      <span class="placeholder-label">Image</span>
-    </div>
+  <section class="video-section">
+    <video
+      id="moodboard-video"
+      src={videoSrc}
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    />
   </section>
 </BaseLayout>
+
+<script>
+  const video = document.getElementById('moodboard-video') as HTMLVideoElement;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    },
+    { threshold: 0.2 }
+  );
+
+  observer.observe(video);
+</script>
 
 <style>
   .process-hero {
@@ -57,44 +58,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: #8a8a8a;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+  .video-section {
     padding-bottom: 4rem;
   }
 
-  .image-placeholder {
-    background: #eae8e4;
+  video {
+    width: 100%;
     border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 200px;
-  }
-
-  .placeholder-label {
-    font-size: 0.75rem;
-    color: #b0ada8;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .tall {
-    grid-row: span 2;
-  }
-
-  .wide {
-    grid-column: span 2;
-  }
-
-  @media (max-width: 600px) {
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .wide {
-      grid-column: span 2;
-    }
+    display: block;
   }
 </style>
