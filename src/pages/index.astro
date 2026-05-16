@@ -1,36 +1,67 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import cup1 from '../assets/cup1.jpeg';
+import cup2 from '../assets/cup2.jpeg';
+import cup3 from '../assets/cup3.jpeg';
+import cup4 from '../assets/cup4.jpeg';
+import cup5 from '../assets/cup5.jpeg';
+import img8044 from '../assets/IMG_8044.JPG';
+import img8048 from '../assets/IMG_8048.JPG';
+import img8050 from '../assets/IMG_8050.JPG';
+import img8114 from '../assets/IMG_8114.JPG';
+import vid1 from '../assets/1.mp4?url';
+import vid2 from '../assets/2.mp4?url';
+import vid3 from '../assets/3.mp4?url';
+import vid4 from '../assets/4.mp4?url';
+import vidMoodboard from '../assets/moodboard.mp4?url';
+
+const cups = [cup1, cup2, cup3, cup4, cup5];
 ---
 
 <BaseLayout>
   <section class="hero">
     <h2 class="hero-heading">Shaped by Hand,<br />Made for Everyday</h2>
-    <p class="hero-sub">A collection of functional ceramics exploring form, texture, and quiet beauty.</p>
+    <p class="hero-sub">
+      A collection of functional ceramics exploring form, texture, and quiet
+      beauty.
+    </p>
   </section>
 
-  <section class="editorial-section">
-    <div class="image-placeholder image-full">
-      <span class="placeholder-label">Image — Hero piece</span>
+  <!-- Cup carousel -->
+  <section class="carousel-section">
+    <div class="carousel-viewport">
+      <div class="carousel-track">
+        {cups.map((src) => (
+          <img src={src.src} alt="Cup" class="carousel-img" />
+        ))}
+        {cups.map((src) => (
+          <img src={src.src} alt="" aria-hidden="true" class="carousel-img" />
+        ))}
+      </div>
     </div>
   </section>
 
   <section class="editorial-section">
     <h3 class="section-heading">Comfort in the Touch</h3>
     <p class="body-text">
-      Each piece begins as a centered lump of clay on the wheel. Through the rhythm of
-      throwing, trimming, and glazing, the form finds itself — functional, tactile, and
-      rooted in the ritual of everyday use.
+      Each piece begins as a centered lump of clay on the wheel. Through the
+      rhythm of throwing, trimming, and glazing, the form finds itself —
+      functional, tactile, and rooted in the ritual of everyday use.
     </p>
   </section>
 
+  <!-- Videos 1–4 -->
   <section class="editorial-section">
-    <div class="image-pair">
-      <div class="image-placeholder image-half">
-        <span class="placeholder-label">Image — Detail shot</span>
-      </div>
-      <div class="image-placeholder image-half">
-        <span class="placeholder-label">Image — In-use shot</span>
-      </div>
+    <div class="video-pair">
+      <video src={vid1} class="media-half" autoplay muted loop playsinline></video>
+      <video src={vid2} class="media-half" autoplay muted loop playsinline></video>
+    </div>
+  </section>
+
+  <section class="editorial-section">
+    <div class="video-pair">
+      <video src={vid3} class="media-half" autoplay muted loop playsinline></video>
+      <video src={vid4} class="media-half" autoplay muted loop playsinline></video>
     </div>
   </section>
 
@@ -38,41 +69,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h3 class="section-heading">The Glaze</h3>
     <p class="body-text">
       Our glazes are mixed in-studio, tested across dozens of firings. We favor
-      matte earth tones and subtle celadons — surfaces that feel as good as they look,
-      that change with the light and deepen with use.
+      matte earth tones and subtle celadons — surfaces that feel as good as they
+      look, that change with the light and deepen with use.
     </p>
   </section>
 
-  <section class="editorial-section">
-    <div class="image-placeholder image-full">
-      <span class="placeholder-label">Image — Glaze detail</span>
-    </div>
-  </section>
+  <!-- Moodboard video -->
 
   <section class="editorial-section">
     <h3 class="section-heading">From Studio to Table</h3>
     <p class="body-text">
-      Mugs, bowls, plates, vases — objects that hold coffee, soup, flowers,
-      and the small ceremonies of a day. We make things meant to be used,
-      not displayed behind glass.
+      Mugs, bowls, plates, vases — objects that hold coffee, soup, flowers, and
+      the small ceremonies of a day. We make things meant to be used, not
+      displayed behind glass.
     </p>
+  </section>
+
+  <!-- IMG jpegs in order -->
+  <section class="editorial-section">
+    <img src={img8044.src} alt="" class="media-full" />
   </section>
 
   <section class="editorial-section">
     <div class="image-pair">
-      <div class="image-placeholder image-half">
-        <span class="placeholder-label">Image — Table setting</span>
-      </div>
-      <div class="image-placeholder image-half">
-        <span class="placeholder-label">Image — Studio shelf</span>
-      </div>
+      <img src={img8048.src} alt="" class="media-half" />
+      <img src={img8050.src} alt="" class="media-half" />
     </div>
   </section>
 
+  <section class="editorial-section">
+    <img src={img8114.src} alt="" class="media-full" />
+  </section>
+
   <section class="editorial-section closing">
-    <p class="pull-quote">
-      "We make things meant to be held."
-    </p>
+    <p class="pull-quote">"We make things meant to be held."</p>
   </section>
 </BaseLayout>
 
@@ -83,7 +113,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .hero-heading {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-weight: 300;
     font-size: clamp(2rem, 5vw, 3.4rem);
     line-height: 1.2;
@@ -99,12 +129,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin: 0 auto;
   }
 
+  /* Carousel */
+  .carousel-section {
+    width: 1000px;
+    margin-bottom: 5rem;
+    margin-left: -94px;
+  }
+
+  .carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    width: max-content;
+    animation: scroll-left 24s linear infinite;
+  }
+
+  .carousel-img {
+    flex-shrink: 0;
+    height: 340px;
+    width: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+  }
+
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* Editorial */
   .editorial-section {
     margin-bottom: 5rem;
   }
 
   .section-heading {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-weight: 400;
     font-size: clamp(1.4rem, 3vw, 2rem);
     letter-spacing: 0.03em;
@@ -119,39 +185,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     line-height: 1.8;
   }
 
-  .image-placeholder {
-    background: #eae8e4;
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .placeholder-label {
-    font-size: 0.8rem;
-    color: #b0ada8;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .image-full {
+  /* Media */
+  .media-full {
+    display: block;
     width: 100%;
+    max-width: 600px;
     aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 2px;
   }
 
+  .video-pair,
   .image-pair {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    max-width: 1200px;
   }
 
-  .image-half {
+  .media-half {
+    display: block;
     width: 100%;
+    max-width: 600px;
     aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 2px;
   }
 
   .pull-quote {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-style: italic;
     font-weight: 300;
     font-size: clamp(1.4rem, 3.5vw, 2.2rem);
